@@ -4,8 +4,8 @@
 
 (export '(basic-window-example))
 
-(def-key-callback key-callback (window key scancode action mods)
-  (declare (ignore mods scancode window))
+(def-key-callback key-callback (window key scancode action mod-keys)
+  (declare (ignore window scancode mod-keys))
   (when (and (eq key :escape) (eq action :press))
     (set-window-should-close)))
 
@@ -27,7 +27,6 @@
   (gl:load-identity))
 
 (def-window-size-callback window-size-callback (window w h)
-  "Seems wrong to just ignore the window, but this is really all about updating OpenGL's rendering field"
   (declare (ignore window))
   (set-viewport w h))
 
